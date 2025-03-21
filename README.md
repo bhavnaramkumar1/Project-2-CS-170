@@ -6,3 +6,16 @@
 - March-20-2025
 
 
+
+- MAIN CODE IN main.py
+- TO RUN : install numpy
+- pip install numpy
+
+
+
+- For extra credit - code in extracredit.py
+- install numpy and pandas for csv processing
+- pip install numpy
+- pip install pandas
+
+- Thank you
