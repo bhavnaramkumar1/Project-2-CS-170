@@ -1,5 +1,3 @@
-## Name: Bhavna Ramkumar 
-## SSID: 862343969CS170_Large_Data__48.txt
 ## Assigned Small data 25 and Big data 48
 ## CS170_Large_Data__48.txt
 ## CS170_Small_Data__25.txt
@@ -13,33 +11,25 @@ import math
 import numpy as np
 
 # Euclidean Distance Calculation using NumPy for faster proccesing for large datasets 
-#np.linalg.norm() another way
 # https://www.geeksforgeeks.org/calculate-the-euclidean-distance-using-numpy/
-# Refrenced the briefing video also
+# Refrenced the briefing video
 
 def euclidean_distance(a, b):
     return np.sqrt(np.sum((a - b) ** 2))
 
-# This function performs Leave-One-Out Cross-Validation with the nearest neighbor apporach 
-# using numpy for faster calculation 
-# # features: input variables 
-# # target: target values classes
-# #selected: the selected features used for classfication 
-# This function performs Leave-One-Out Cross-Validation with the nearest neighbor apporach 
-# using numpy for faster calculation 
+# performs Leave-One-Out Cross-Validation with the nearest neighbor apporach
+#numpy for fast calc
+# features: input variables, target: target values classes, selected: the selected features used for classfication 
 def leave_one_out(features, target, selected):
-
-# # features: input variables 
-# # target: target valies
-# #selected: the selected features used for classfication 
 
     if not selected:
         return 50.0  # If no features are selected, random guessing
 
-    # Convert to NumPy array
+    # Convert to numpy array
     features = np.array(features)  
     target = np.array(target)
-    #counter to track correct predictions and total num of instances
+
+    #correct predictions and total num of instances
     correct = 0
     num = len(features)
 
@@ -48,36 +38,32 @@ def leave_one_out(features, target, selected):
         test_inst = features[i, selected] 
         # removing test from data 
         train_inst = np.delete(features[:, selected], i, axis=0)  
-        #delete 
         train_label = np.delete(target, i) 
 
-        # Compute distances bestwweb train_inst- test_inst
+        # Compute distances train_inst- test_inst
         distances = np.linalg.norm(train_inst - test_inst, axis=1)
 
-        #find index of the nearest neighbor 
-        #  prediction
+        #find index of the nearest neighbor and prediction
         nearest_num = np.argmin(distances)
         predicted = train_label[nearest_num]
+
         #check if predicted matches the target 
         if predicted == target[i]:
             correct += 1
 
-# Return accuracy percentage
     return (correct / num) * 100  
 
 #Function performs BACKWARD ELIMINATION similar to forward but backwards
 def backward_elimination(feat, y):
 
-    # total num of features
+    # total num of features and selected 
     total = len(feat[0])  
-    # selected features
     selected = list(range(total)) 
     #call the leave one out function at the start 
     best_accuracy = leave_one_out(feat, y, selected) 
     # this is to store the best feature to be printed at the end
     best_feature_set = selected.copy()
 
-    #print statements 
     print(f"\nRunning nearest neighbor with all {total} features, using 'leave-one-out' evaluation.")
     print(f"I get an accuracy of {best_accuracy:.1f}%\n")
     print("Beginning search.\n")
@@ -94,6 +80,7 @@ def backward_elimination(feat, y):
             temp_features = selected.copy()
             temp_features.remove(feature)  
             accuracy = leave_one_out(feat, y, temp_features)
+            
             print(f"    Using feature(s) {set(f + 1 for f in temp_features)}, accuracy is {accuracy:.1f}%")
 
             if accuracy > worst_accuracy:
@@ -161,7 +148,7 @@ def forward_selection(feat, y):
                 feature_set = selected.copy()
 
         else:
-            break  # Stop if no feature improves accuracy
+            break  # Stop if no  improves accuracy
 
     print(f"\nFinished search!! The best feature subset is {set(f + 1 for f in feature_set)}, which has an accuracy of {overall_accuracy:.1f}%.")
 
@@ -170,22 +157,22 @@ def forward_selection(feat, y):
 ## This function loads the data from the given file  
 def load_data(filename):
 
-    #opens file and reads all the lines
+    #opens and reads
     with open(filename, "r") as file:
         lines = file.readlines()  
     data = []
 
-    #converting each line to a list of floats
+    #converting line to floats
     for line in lines:
         values = list(map(float, line.split())) 
         data.append(values)
 
-    # getting target values y from the first column 
+    #  target values y from the first column 
     y = [row[0] for row in data]   
-    # getting feature value x from the rest of the column
+    # feature value x from the rest of the column
     x = [row[1:] for row in data]  
 
-    # prints out the instances and the features for the choosen dataset 
+    # prints out the instances and the features 
     print(f"This dataset has {len(x[0])} features(not including the class attribute), with {len(x)} instances")
     return x, y
 
@@ -194,7 +181,7 @@ def load_data(filename):
 def main():
     print("Welcome to Bhavna Ramkumars Feature Search Algorithm  ")
 
-    #Enter file name 
+    #Enter file  
     filename = input("Type in the name of the file to test:")
 
     #Choose 1 for forward algorithm and Choose 2 for Backward Elimination
@@ -203,10 +190,9 @@ def main():
     print("2) Backward Elimination")
     choice = int(input(""))
 
-    #Loads the data based filename inputted
+    #Loads the data 
     x,y = load_data(filename)
 
-    #Goes to the designated functions 
     if choice == 1:
         forward_selection(x,y)
     elif choice == 2:
@@ -215,60 +201,4 @@ def main():
         print("\nInvalid choice. Please enter 1 or 2: ")
 
 main() 
-
-
-
-## Previous code worked on using math rather than Numpy 
-## Slower proccesing time for largedata sets harded to get results 
-
-
-# # the equation for  euclidean_distance
-# def euclidean_distance(a, b):
-#     return math.sqrt(sum((x - y) ** 2 for x, y in zip(a, b)))
-
-
-# # This function performs Leave-One-Out Cross-Validation with the neairest neighbor apporach 
-# def leave_one_out(features, target, selected):
-
-# # features: input variables 
-# # target: target valies
-# #selected: the selected features used for classfication
-
-#     #random guessing if not selected
-#     if not selected:
-#         return 50.0  
-
-#     # counter for correct predication
-#     correct = 0
-#     # total instances in the dataset using len
-#     num = len(features)
-
-#     # iterate through each instance
-#     for i in range(num):
-#         # get selected features to test out
-#         test = [features[i][f] for f in selected]
-#         #initalize min distance to infinity 
-#         min_distance = float("inf")
-#         predicted = None
-
-#         #for loop with nested if statements
-#         for j in range(num):
-#             #leave one out
-#             if i != j:  
-#                 # get the selected features and compute the euclidien distance
-#                 train_instance = [features[j][f] for f in selected]
-#                 distance = euclidean_distance(test, train_instance)
-
-#                 #updating nearest neighbor
-#                 if distance < min_distance:
-#                     min_distance = distance
-#                     predicted = target[j]
-
-#         # increment if predicted is correct 
-#         if predicted == target[i]:
-#             correct += 1
-
-#     #changing into percentage 
-#     accuracy = (correct / num) * 100
-#     return accuracy
 
