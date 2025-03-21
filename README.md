@@ -28,4 +28,4 @@
     pip install pandas
     ```
 
-- **Thank you!** 🚀  
+- **Thank you!** 
