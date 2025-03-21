@@ -1,21 +1,31 @@
-- Assignment 2 CS170: Introduction to Artificial Intelligence, Feature Selection with Nearest Neighbor, Dr. Eamonn Keogh
-- Link to report: https://docs.google.com/document/d/1cuANjDpEI6Ns_GaBy4LGBceh6pDGwrBqL58PUw6teKg/edit?usp=sharing 
-- Name: Bhavna Ramkumar 
-- SSID: 862343969
-- Email: bramk002@ucr.edu
-- March-20-2025
+# CS170: Introduction to Artificial Intelligence  
+- **Assignment 2: Feature Selection with Nearest Neighbor**  
+- **Instructor:** Dr. Eamonn Keogh  
 
+## Student Information  
+- **Name:** Bhavna Ramkumar  
+- **Student ID:** 862343969  
+- **Email:** bramk002@ucr.edu  
+- **Date:** March 20, 2025  
 
+## Report  
+- **Report Link:** [Feature Selection with Nearest Neighbor Report](https://docs.google.com/document/d/1cuANjDpEI6Ns_GaBy4LGBceh6pDGwrBqL58PUw6teKg/edit?usp=sharing)  
 
-- MAIN CODE IN main.py
-- TO RUN : install numpy
-- pip install numpy
+## Running the Code  
 
+- **Main Code:**  
+  - The primary implementation is in `main.py`.  
+  - To run the code, install **NumPy** if not already installed:  
+    ```
+    pip install numpy
+    ```
 
+- **Extra Credit:**  
+  - Additional code for extra credit is in `extracredit.py`.  
+  - This requires **NumPy** and **Pandas** for CSV processing. Install dependencies with:  
+    ```
+    pip install numpy
+    pip install pandas
+    ```
 
-- For extra credit - code in extracredit.py
-- install numpy and pandas for csv processing
-- pip install numpy
-- pip install pandas
-
-- Thank you
+- **Thank you!** 🚀  
